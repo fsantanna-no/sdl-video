@@ -1,0 +1,10 @@
+# Executables
+*.exe
+
+# Media files
+*.yuv
+*.pcm
+*.mp4
+
+# Editor swap files
+*.swp

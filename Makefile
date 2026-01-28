@@ -4,28 +4,29 @@ LDFLAGS = $(shell pkg-config --libs sdl2)
 FFMPEG = $(shell pkg-config --cflags --libs libavcodec libavformat \
          libswscale libswresample libavutil)
 
-all: main video_yuv video_mp4 audio_pcm audio_mp4 both_raw both_mp4
+all: main.exe video_yuv.exe video_mp4.exe audio_pcm.exe audio_mp4.exe \
+     both_raw.exe both_mp4.exe
 
-main: main.c
+main.exe: main.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
-video_yuv: video_yuv.c
+video_yuv.exe: video_yuv.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
-video_mp4: video_mp4.c
+video_mp4.exe: video_mp4.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS) $(FFMPEG)
 
-audio_pcm: audio_pcm.c
+audio_pcm.exe: audio_pcm.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
-audio_mp4: audio_mp4.c
+audio_mp4.exe: audio_mp4.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS) $(FFMPEG)
 
-both_raw: both_raw.c
+both_raw.exe: both_raw.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
-both_mp4: both_mp4.c
+both_mp4.exe: both_mp4.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS) $(FFMPEG)
 
 clean:
-	rm -f main video_yuv video_mp4 audio_pcm audio_mp4 both_raw both_mp4
+	rm -f *.exe
